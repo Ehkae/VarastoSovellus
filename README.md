@@ -1,1 +1,3 @@
 # VarastoSovellus
+
+OOP varasto esimerkki
