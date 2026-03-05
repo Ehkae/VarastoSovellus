@@ -37,7 +37,24 @@ namespace VarastoSovellus
             Console.WriteLine("\nVaraston sisältö:");
             foreach (var tuote in _tuotteet)
             {
-                tuote.NaytaTiedot();
+                tuote.NaytaTiedot(); // POLYMORFISMI - kutsuu oikean luokan metodia
+            }
+        }
+
+        // Metodi käsittelee alennettavia tuotteita (RAJAPINNAN KÄYTTÖ)
+        public void KasitteleAlennettavatTuotteet(decimal alennusProsentti)
+        {
+            foreach (var tuote in _tuotteet)
+            {
+                // Tarkistetaan, toteuttaako tuote IAlennettava-rajapinnan
+                if (tuote is IAlennettava alennettava)
+                {
+                    Console.WriteLine($"\nTuote: {tuote.Nimi}");
+                    alennettava.NaytaAlennusTiedot();
+                    decimal alennettuHinta = alennettava.LaskeAlennettuHinta(alennusProsentti);
+                    Console.WriteLine($"  Alkuperäinen hinta: {tuote.Hinta:F2} €");
+                    Console.WriteLine($"  Alennettu hinta: {alennettuHinta:F2} €");
+                }
             }
         }
     }

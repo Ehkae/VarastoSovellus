@@ -17,8 +17,8 @@ namespace VarastoSovellus
             Maara = maara;
         }
 
-        // Näytetään tuotteen tiedot
-        public void NaytaTiedot()
+        // Näytetään tuotteen tiedot (virtual mahdollistaa polymorfismin)
+        public virtual void NaytaTiedot()
         {
             Console.WriteLine($"Tuote: {Nimi}, Hinta: {Hinta} €, Määrä: {Maara} kpl");
         }
